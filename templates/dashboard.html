@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="my-4">Welcome, {{ current_user.email }}</h2>
+    
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <a href="{{ url_for('upload') }}" class="btn btn-success">Upload New Statement</a>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card text-white bg-primary">
+                <div class="card-body">
+                    <h5>Food</h5>
+                    <h3>₹{{ "%.2f"|format(totals.Food) }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-success">
+                <div class="card-body">
+                    <h5>Travel</h5>
+                    <h3>₹{{ "%.2f"|format(totals.Travel) }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-danger">
+                <div class="card-body">
+                    <h5>Education</h5>
+                    <h3>₹{{ "%.2f"|format(totals.Education) }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-warning">
+                <div class="card-body">
+                    <h5>Miscellaneous</h5>
+                    <h3>₹{{ "%.2f"|format(totals.Miscellaneous) }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="my-4">Recent Transactions</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction.date }}</td>
+                <td>{{ transaction.description }}</td>
+                <td>₹{{ "%.2f"|format(transaction.amount) }}</td>
+                <td>{{ transaction.category }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
