@@ -502,6 +502,3 @@ def show_graph():
 
 def handler(request, *args, **kwargs):
     return app(request, *args, **kwargs)
-
-if __name__ == '__main__':
-    app.run(debug=True)
