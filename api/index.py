@@ -502,3 +502,9 @@ def show_graph():
 
 def handler(request, *args, **kwargs):
     return app(request, *args, **kwargs)
+
+import serverless_wsgi
+
+def handler(event, context):
+    return serverless_wsgi.handle_request(app, event, context)
+
