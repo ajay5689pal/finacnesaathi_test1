@@ -500,7 +500,8 @@ def show_graph():
         total_expense=round(total_expense, 2)
     )
 
-
+def handler(request, *args, **kwargs):
+    return app(request, *args, **kwargs)
 
 if __name__ == '__main__':
     app.run(debug=True)
