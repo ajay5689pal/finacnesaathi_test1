@@ -223,7 +223,7 @@ def login():
         
         if user and check_password_hash(user.password, password):
             login_user(user)
-            return redirect(url_for('dashboard'))
+            return redirect(url_for('/'))
         flash('Invalid email or password')
     return render_template('login.html')
 
@@ -254,7 +254,7 @@ def logout():
     return redirect(url_for('login'))
 
 # Main application routes
-@app.route('/dashboard')
+@app.route('/')
 @login_required
 def dashboard():
     categories = ['Food', 'Travel', 'Education', 'Miscellaneous']
